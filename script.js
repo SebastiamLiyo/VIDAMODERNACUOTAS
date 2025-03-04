@@ -55,7 +55,7 @@ document.getElementById("cancel-payment-btn").addEventListener("click", function
         const totalPaidCell = editingRow.children[10];
         const progressCell = editingRow.children[8];
 
-        let totalPaid = parseFloat(totalPaidCell.textContent) || 0;
+        let totalPaid = parseFloat(totalPaidCell.textContent) || 0; 
         const total = parseFloat(editingRow.children[3].textContent);
         const installments = parseInt(editingRow.children[4].textContent);
         const installmentValue = total / installments;
@@ -151,13 +151,37 @@ function addDeleteEventListeners() {
     });
 }
 
-function saveSalesData() {
-    const tableRows = document.querySelectorAll("#sales-table-body tr");
-    const salesData = [];
+async function syncWithGoogleSheets() {
+    const salesData = getSalesData();
 
-    tableRows.forEach(row => {
+    try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbz0b9XTb0uW_VhbW6C_Y8n2y-ra3K291vT-9G9t7Hh9eJ35lQ8w_z_Z96V44qVz8YlJkw/exec', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ sales: salesData })
+        });
+
+        const result = await response.json();
+        if (result.status === "success") {
+            console.log("Datos sincronizados con Google Sheets.");
+        } else {
+            console.error("Error al sincronizar:", result.error);
+        }
+    } catch (error) {
+        console.error("Error en la petición:", error);
+    }
+}
+
+function saveSalesData() {
+    localStorage.setItem("salesData", JSON.stringify(getSalesData()));
+    syncWithGoogleSheets(); 
+}
+
+function getSalesData() {
+    const tableRows = document.querySelectorAll("#sales-table-body tr");
+    return Array.from(tableRows).map(row => {
         const cells = row.querySelectorAll("td");
-        salesData.push({
+        return {
             date: cells[0].textContent,
             client: cells[1].textContent,
             product: cells[2].textContent,
@@ -169,10 +193,8 @@ function saveSalesData() {
             progress: cells[8].textContent,
             nextInstallment: cells[9].textContent,
             totalPaid: cells[10].textContent
-        });
+        };
     });
-
-    localStorage.setItem("salesData", JSON.stringify(salesData));
 }
 
 function loadSalesData() {
