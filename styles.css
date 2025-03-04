@@ -1,0 +1,111 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 20px;
+}
+
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #2b7a2b;
+}
+
+/* Modern table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #dddddd;
+}
+
+th {
+    background-color: #2b7a2b;
+    color: white;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Updated action buttons */
+.action-btn {
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 3px;
+}
+
+.delete-btn {
+    background-color: #d9534f;
+    color: white;
+}
+
+.edit-btn {
+    background-color: #f0ad4e;
+    color: white;
+}
+
+.pay-btn {
+    background-color: #0275d8;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    margin: 10% auto;
+    width: 50%;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close-btn {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.with-total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.total-display {
+    font-size: 18px;
+    font-weight: bold;
+    background: #f8f8f8;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}

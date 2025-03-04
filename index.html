@@ -1,0 +1,85 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vida Moderna - Ventas en Cuotas</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Vida Moderna - Ventas en Cuotas</h1>
+        <button id="add-sale-btn">+ Agregar Venta</button>
+        <table>
+            <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Cliente</th>
+                    <th>Producto</th>
+                    <th>Total</th>
+                    <th>Cuotas</th>
+                    <th>Vendedor</th>
+                    <th>Próx. Pago</th>
+                    <th>Estado</th>
+                    <th>Progreso</th>
+                    <th>Próx. Cuota</th>
+                    <th>Total Pagado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="sales-table-body">
+                <!-- Las filas de venta se insertarán aquí dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <h2>Agregar/Editar Venta</h2>
+            <form id="sale-form">
+                <div class="form-group">
+                    <label for="date">Fecha:</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="client">Cliente:</label>
+                    <input type="text" id="client" required>
+                </div>
+                <div class="form-group">
+                    <label for="product">Producto:</label>
+                    <input type="text" id="product" required>
+                </div>
+                <div class="form-group with-total">
+                    <div>
+                        <label for="total">Total:</label>
+                        <input type="number" id="total" required>
+                    </div>
+                    <div class="total-display">
+                        <span>Total:</span> <span id="total-value">0.00</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="installments">Cuotas:</label>
+                    <input type="number" id="installments" required>
+                </div>
+                <div class="form-group">
+                    <label for="payment-frequency">Frecuencia de Pago:</label>
+                    <select id="payment-frequency" required>
+                        <option value="7">Cada 7 días</option>
+                        <option value="15">Cada 15 días</option>
+                        <option value="30">Cada 1 mes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="seller">Vendedor:</label>
+                    <input type="text" id="seller" required>
+                </div>
+                <button type="submit">Guardar</button>
+                <button type="button" id="cancel-payment-btn" style="display:none;">Cancelar Pago</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
